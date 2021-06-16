@@ -10,6 +10,7 @@ import transactions from './transactions.json';
 export default function App() {
   return (
     <div>
+      <h1>Привет</h1>
       <Profile
         name={user.name}
         tag={user.tag}
