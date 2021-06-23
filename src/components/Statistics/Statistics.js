@@ -1,19 +1,35 @@
 import PropTypes from 'prop-types';
+import s from './Statistics.module.css';
 
-const Statistics = ({ title, stats }) => (
-  <section class="statistics">
-    {title && <h2 class="title">{title}</h2>}
+const colors = ['#dbb0a0', '#e0c2c0', '#eab586', '#b2481b', '#57394a'];
 
-    <ul class="stat-list">
-      {stats.map(statsItem => (
-        <li class="item" key={statsItem.id}>
-          <span class="label">{statsItem.label}</span>
-          <span class="percentage">{statsItem.percentage}%</span>
-        </li>
-      ))}
-    </ul>
-  </section>
-);
+const randomIntegerFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+function Statistics({ title, stats }) {
+  return (
+    <section className={s.statistics}>
+      {title && <h2 className={s.title}>{title}</h2>}
+
+      <ul className={s.statList}>
+        {stats.map(statsItem => (
+          <li
+            className={s.item}
+            key={statsItem.id}
+            style={{
+              backgroundColor:
+                colors[randomIntegerFromInterval(0, colors.length - 1)],
+            }}
+          >
+            <span className={s.label}>{statsItem.label}</span>
+            <span className={s.percentage}>{`${statsItem.percentage}%`}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
 
 Statistics.propTypes = {
   title: PropTypes.string,
